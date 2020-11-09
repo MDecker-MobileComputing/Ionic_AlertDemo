@@ -3,6 +3,9 @@ import { AlertController, ToastController } from '@ionic/angular';
 
 
 /**
+ * Doku zu ion-alert: https://ionicframework.com/docs/api/alert
+ * <br><br>
+ * 
  * Definition Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
  * https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
  * <br><br>
@@ -25,6 +28,7 @@ export class HomePage {
   constructor( private alertController: AlertController,
                private toastController: ToastController
              ) {}
+
 
   /**
    * Öffnet Alert (Dialog) mit zwei Texteingabefeldern, die beide ausgefüllt werden müssen.
@@ -65,6 +69,7 @@ export class HomePage {
       text: "Abbrechen",
       role: "Cancel",
       handler: () => {
+
         this.zeigeToast("Vorgang abgebrochen");
       }
     };
@@ -80,6 +85,7 @@ export class HomePage {
 
     await alert.present();
   }
+
 
   /**
    * Öffnet Alert (Dialog), auf dem mit RadioButtons eine Single-Choice-Frage
@@ -112,6 +118,7 @@ export class HomePage {
       text: "Abbrechen",
       role: "Cancel",
       handler: () => {
+
         this.zeigeToast("Vorgang abgebrochen");
       }
     };
@@ -129,9 +136,67 @@ export class HomePage {
     await alert.present();
   }
 
+
+  /** 
+   * Methode zeigt einen Dialog, auf dem mit Checkboxen eine Multiple-Choice-Frage
+   * angezeigt wird.
+   */ 
   async onMultiChoiceButton() {
 
+    const pruefButton = {
+      text: "Weiter",
+      handler: async (inputWertArray) => {
+
+        let anzahlAntworten = inputWertArray.length;
+        
+        if (anzahlAntworten === 0) {
+
+          this.zeigeToast("Keine einzige Antwort ausgewählt.");
+          return;
+        }
+
+        if (anzahlAntworten !== 2) {
+
+          this.zeigeToast("Antwort ist FALSCH!");
+          return;          
+        }
+
+        if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
+
+          this.zeigeToast("Antwort ist RICHTIG!");
+
+        } else {
+
+          this.zeigeToast("Antwort ist FALSCH!");
+        }
+      }
+    };
+
+    const abbrechenButton = {
+      text: "Abbrechen",
+      role: "Cancel",
+      handler: () => {
+
+        this.zeigeToast("Vorgang abgebrochen");
+      }
+    };
+
+    const alert = await this.alertController.create({
+      header: "Multiple-Choice-Frage",
+      message: "Wählen Sie alle Holzblasinstrumente aus:",
+      buttons: [pruefButton, abbrechenButton],
+      inputs: [ { name: "cbox_1", type: "checkbox", label: "Cajón"   , value: "cajon"   , checked: false },
+                { name: "cbox_2", type: "checkbox", label: "Keytar"  , value: "keytar"  , checked: false },
+                { name: "cbox_3", type: "checkbox", label: "Saxophon", value: "saxophon", checked: false },
+                { name: "cbox_4", type: "checkbox", label: "Schalmei", value: "schalmei", checked: false },
+                { name: "cbox_5", type: "checkbox", label: "Theremin", value: "theremin", checked: false }
+              ]
+    });
+
+    await alert.present();
+
   }
+
 
   /**
    * Nachricht in einem sog. Toast anzeigen, siehe auch https://ionicframework.com/docs/api/toast
