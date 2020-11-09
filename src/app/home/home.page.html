@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Demo für Dialoge mit Ionic
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  &nbsp;
+
+  <ion-button expand="block" (click)="onHalloNameButton()" >Hallo Name</ion-button>
+
+  &nbsp;
+
+  <ion-button expand="block" (click)="onSingleChoiceButton()" >Single-Choice-Frage</ion-button>
+
+  &nbsp;
+
+  <ion-button expand="block" (click)="onMultiChoiceButton()" >Multiple-Choice-Frage</ion-button>
+
+</ion-content>
