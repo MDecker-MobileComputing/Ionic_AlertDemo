@@ -69,7 +69,7 @@ export class HomePage {
         const weiterButton = { text: "Weiter" };
 
         const alert = await
-            this.alertController.create({ message:gruss,
+            this.alertController.create({ message: gruss,
                                           buttons: [weiterButton]
                                         });
         alert.present();
@@ -106,12 +106,12 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: async (inputWert) => {
+      handler: (inputWert) => {
 
         if (inputWert === undefined || inputWert === null) {
 
           this.zeigeToast("Keine Antwort ausgewählt.");
-          return;
+          return false;
         }
 
         if (inputWert == "hamburg") {
@@ -156,20 +156,20 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: async (inputWertArray) => {
+      handler: (inputWertArray) => {
 
         let anzahlAntworten = inputWertArray.length;
         
         if (anzahlAntworten === 0) {
 
           this.zeigeToast("Keine einzige Antwort ausgewählt.");
-          return;
+          return false;
         }
 
         if (anzahlAntworten !== 2) {
 
           this.zeigeToast("Antwort ist FALSCH!");
-          return;          
+          return false;          
         }
 
         if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
