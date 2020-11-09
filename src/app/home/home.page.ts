@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import * as moment from 'moment';
 
 
 /**
  * Doku zu ion-alert: https://ionicframework.com/docs/api/alert
  * <br><br>
  * 
+ * Unterstütze Input-Felder:
+ * * checkbox, radio und textarea
+ *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
+ * * Texttypen: date, email, number, password, search, tel, text, url, time, week, month, datetime-local
+ *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/interface.d.ts#L50
+ * 
  * Achtung: Ein Alert kann nicht verschiedene Arten von Input-Feldern enthalten, z.B. RadioButtons und
  * CheckBoxen gleichzeitig sind nicht möglich. 
  * <br><br>
  * 
  * Definition von  Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
- * https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
+ * 
  * <br><br>
  *
  * Eigenschaft "label" von AlertInput ist anscheinend nur für CheckBox und RadioButton notwendig, siehe
@@ -200,6 +207,65 @@ export class HomePage {
     await alert.present();
   }
 
+
+  /**
+   * Methode erzeugt Dialog zur Eingabe zweiter Datumswerte, für die die Differenz in Tagen berechnet wird.
+   * <br><br>
+   * 
+   * Eigentliche Datumsarithmetik wird mit moment.js gemacht. Die JavaScript-Library verfügt auch über eine
+   * TypeScript-Definitions-Datei und kann deshalb in TypeScript-Projekten verwendet werden.
+   * Befehl, um sie dem projekt hinzuzufügen: npm install moment.
+   */
+  async onDatumsBerechnung() {
+
+    const pruefButton = {
+      text: "Berechnen",
+      handler: async (inputWerte) => {
+
+        let datum1 = inputWerte.datum_1;
+        let datum2 = inputWerte.datum_2;
+
+        if (datum1 === null || datum1.trim().length === 0) {
+
+          this.zeigeToast("Keinen Wert für erstes Datum eingegeben.");
+          return false;
+        }
+        if (datum2 === null || datum2.trim().length === 0) {
+
+          this.zeigeToast("Keinen Wert für zweites Datum eingegeben.");
+          return false;
+        }
+
+
+        let moment1 = moment(datum1);
+        let moment2 = moment(datum2);
+    
+        let diffTage = moment2.diff( moment1, "days" );
+
+        this.zeigeToast(`Differenz: ${diffTage} Tag(e)`);
+      }
+    };
+
+    const abbrechenButton = {
+      text: "Abbrechen",
+      role: "Cancel",
+      handler: () => {
+
+        this.zeigeToast("Vorgang abgebrochen");
+      }
+    };    
+
+    const alert = await this.alertController.create({
+      header: "Datumsarithmetik",
+      message: "Geben Sie die beiden Datumswerte ein, zwischen denen die Differenz in Tagen berechnet werden soll.",
+      buttons: [pruefButton, abbrechenButton],
+      inputs: [ { name: "datum_1", type: "date", label: "Datum 1:" },
+                { name: "datum_2", type: "date", label: "Datum 2:" }
+              ]              
+    });
+
+    await alert.present();
+  }
 
   /**
    * Nachricht in einem sog. Toast anzeigen, siehe auch https://ionicframework.com/docs/api/toast
