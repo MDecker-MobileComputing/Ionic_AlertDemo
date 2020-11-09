@@ -27,7 +27,7 @@ export class HomePage {
              ) {}
 
   /**
-   * Öffnet Alertdialog mit zwei Texteingabefeldern, die beide ausgefüllt werden müssen.
+   * Öffnet Alert (Dialog) mit zwei Texteingabefeldern, die beide ausgefüllt werden müssen.
    */
   async onHalloNameButton() {
 
@@ -35,8 +35,8 @@ export class HomePage {
       text: "Weiter",
       handler: async (inputWerte) => {
 
-        const vorname  = inputWerte.vorname;
-        const nachname = inputWerte.nachname;
+        const vorname  = inputWerte.input_vorname;
+        const nachname = inputWerte.input_nachname;
 
         if (vorname === null || vorname.trim().length === 0) {
 
@@ -73,16 +73,60 @@ export class HomePage {
       header: "Hallo Name",
       message: "Bitte geben Sie Ihren Vornamen und auch den Nachnamen ein:",
       buttons: [okButton, abbrechenButton],
-      inputs: [ { name: "vorname" , type: "text", placeholder: "Vorname" },
-                { name: "nachname", type: "text", placeholder: "Nachname" }
+      inputs: [ { name: "input_vorname" , type: "text", placeholder: "Vorname"  },
+                { name: "input_nachname", type: "text", placeholder: "Nachname" }
               ]
     });
 
     await alert.present();
   }
 
+  /**
+   * Öffnet Alert (Dialog), auf dem mit RadioButtons eine Single-Choice-Frage
+   * angezeigt wird.
+   */
   async onSingleChoiceButton() {
 
+    const pruefButton = {
+      text: "Weiter",
+      handler: async (inputWert) => {
+
+        if (inputWert === undefined || inputWert === null) {
+
+          this.zeigeToast("Keine Antwort ausgewählt.");
+          return;
+        }
+
+        if (inputWert == "hamburg") {
+
+          this.zeigeToast("Richtige Antwort!");
+
+        } else {
+
+          this.zeigeToast("Falsche Antwort!");
+        }
+      }
+    };
+
+    const abbrechenButton = {
+      text: "Abbrechen",
+      role: "Cancel",
+      handler: () => {
+        this.zeigeToast("Vorgang abgebrochen");
+      }
+    };
+
+    const alert = await this.alertController.create({
+      header: "Single-Choice-Frage",
+      message: "Welche Stadt liegt am weisten nördlich?",
+      buttons: [pruefButton, abbrechenButton],
+      inputs: [ { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
+                { name: "stadt_2", type: "radio", label: "Hamburg"  , value: "hamburg"   },
+                { name: "stadt_3", type: "radio", label: "London"   , value: "london"    },
+              ]
+    });
+
+    await alert.present();
   }
 
   async onMultiChoiceButton() {
