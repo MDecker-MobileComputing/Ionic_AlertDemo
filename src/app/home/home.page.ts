@@ -6,7 +6,11 @@ import { AlertController, ToastController } from '@ionic/angular';
  * Doku zu ion-alert: https://ionicframework.com/docs/api/alert
  * <br><br>
  * 
- * Definition Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
+ * Achtung: Ein Alert kann nicht verschiedene Arten von Input-Feldern enthalten, z.B. RadioButtons und
+ * CheckBoxen gleichzeitig sind nicht möglich. 
+ * <br><br>
+ * 
+ * Definition von  Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
  * https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
  * <br><br>
  *
@@ -194,7 +198,6 @@ export class HomePage {
     });
 
     await alert.present();
-
   }
 
 
