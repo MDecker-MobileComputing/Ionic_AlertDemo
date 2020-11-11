@@ -257,6 +257,53 @@ export class HomePage {
     await alert.present();
   }
 
+  /**
+   * Öffnet Dialog zur Eingabe einer Länge in Zoll/Inch, die dann in cm umgerechnet wird.
+   * In Chrome-basierten Browsern könnnen in das Eingabefeld nur Zahlenwerte und keine Buchstaben 
+   * eingegeben werden.
+   */
+  async onZollNachCentimeter() {
+
+    const umrechnenButton = {
+      text: "Umrechnen",
+      handler: (inputWerte) => {
+
+        let zollStr = inputWerte.input_zoll; // ist leerer String wenn in Firefox Buchstaben eingegeben werden
+
+        if (zollStr === null || zollStr === undefined || zollStr.trim().length === 0) {
+
+          this.zeigeToast("Kein Zoll-Wert eingegeben.");
+          return false;
+        }
+
+        let zollNumber = parseFloat(zollStr);
+
+        let cm = zollNumber * 2.54;
+
+        let ergebnis = `${zollNumber} Zoll entsprechen ${cm} cm.`;
+        this.zeigeDialog(ergebnis);
+      }      
+    };
+
+    const abbrechenButton = {
+      text: "Abbrechen",
+      role: "Cancel",
+      handler: () => {
+
+        this.zeigeToast("Vorgang abgebrochen");
+      }
+    };
+
+    const alert = await this.alertController.create({
+      header: "Zoll in cm umrechnen",
+      message: "Geben Sie die Länge in Zoll (Inch) ein.",
+      buttons: [umrechnenButton, abbrechenButton],
+      inputs: [ { name: "input_zoll" , type: "number", placeholder: "Zoll/Inch" } ]              
+    });    
+
+    await alert.present();
+  }
+
 
   /**
    * Nachricht in einem sog. Toast anzeigen, siehe auch https://ionicframework.com/docs/api/toast
