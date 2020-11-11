@@ -6,19 +6,19 @@ import * as moment from 'moment';
 /**
  * Doku zu ion-alert: https://ionicframework.com/docs/api/alert
  * <br><br>
- * 
+ *
  * Unterstütze Input-Felder:
  * * checkbox, radio und textarea
  *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
  * * Texttypen: date, email, number, password, search, tel, text, url, time, week, month, datetime-local
  *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/interface.d.ts#L50
- * 
+ *
  * Achtung: Ein Alert kann nicht verschiedene Arten von Input-Feldern enthalten, z.B. RadioButtons und
- * CheckBoxen gleichzeitig sind nicht möglich. 
+ * CheckBoxen gleichzeitig sind nicht möglich.
  * <br><br>
- * 
+ *
  * Definition von  Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
- * 
+ *
  * <br><br>
  *
  * Eigenschaft "label" von AlertInput ist anscheinend nur für CheckBox und RadioButton notwendig, siehe
@@ -48,7 +48,7 @@ export class HomePage {
 
     const okButton = {
       text: "Weiter",
-      handler: async (inputWerte) => {
+      handler: (inputWerte) => {
 
         const vorname  = inputWerte.input_vorname;
         const nachname = inputWerte.input_nachname;
@@ -66,13 +66,7 @@ export class HomePage {
 
         const gruss = `Hallo ${vorname} ${nachname}!`;
 
-        const weiterButton = { text: "Weiter" };
-
-        const alert = await
-            this.alertController.create({ message: gruss,
-                                          buttons: [weiterButton]
-                                        });
-        alert.present();
+        this.zeigeDialog(gruss);
       }
     };
 
@@ -116,11 +110,11 @@ export class HomePage {
 
         if (inputWert == "hamburg") {
 
-          this.zeigeToast("Richtige Antwort!");
+          this.zeigeDialog("Richtige Antwort!");
 
         } else {
 
-          this.zeigeToast("Falsche Antwort!");
+          this.zeigeDialog("Falsche Antwort!");
         }
       }
     };
@@ -148,10 +142,10 @@ export class HomePage {
   }
 
 
-  /** 
+  /**
    * Methode zeigt einen Dialog, auf dem mit Checkboxen eine Multiple-Choice-Frage
    * angezeigt wird.
-   */ 
+   */
   async onMultiChoiceButton() {
 
     const pruefButton = {
@@ -159,7 +153,7 @@ export class HomePage {
       handler: (inputWertArray) => {
 
         let anzahlAntworten = inputWertArray.length;
-        
+
         if (anzahlAntworten === 0) {
 
           this.zeigeToast("Keine einzige Antwort ausgewählt.");
@@ -169,16 +163,15 @@ export class HomePage {
         if (anzahlAntworten !== 2) {
 
           this.zeigeToast("Antwort ist FALSCH!");
-          return false;          
         }
 
         if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
 
-          this.zeigeToast("Antwort ist RICHTIG!");
+          this.zeigeDialog("Antwort ist RICHTIG!");
 
         } else {
 
-          this.zeigeToast("Antwort ist FALSCH!");
+          this.zeigeDialog("Antwort ist FALSCH!");
         }
       }
     };
@@ -211,7 +204,7 @@ export class HomePage {
   /**
    * Methode erzeugt Dialog zur Eingabe zweiter Datumswerte, für die die Differenz in Tagen berechnet wird.
    * <br><br>
-   * 
+   *
    * Eigentliche Datumsarithmetik wird mit moment.js gemacht. Die JavaScript-Library verfügt auch über eine
    * TypeScript-Definitions-Datei und kann deshalb in TypeScript-Projekten verwendet werden.
    * Befehl, um sie dem projekt hinzuzufügen: npm install moment.
@@ -220,7 +213,7 @@ export class HomePage {
 
     const pruefButton = {
       text: "Berechnen",
-      handler: async (inputWerte) => {
+      handler: (inputWerte) => {
 
         let datum1 = inputWerte.datum_1;
         let datum2 = inputWerte.datum_2;
@@ -239,10 +232,10 @@ export class HomePage {
 
         let moment1 = moment(datum1);
         let moment2 = moment(datum2);
-    
+
         let diffTage = moment2.diff( moment1, "days" );
 
-        this.zeigeToast(`Differenz: ${diffTage} Tag(e)`);
+        this.zeigeDialog(`Differenz: ${diffTage} Tag(e)`);
       }
     };
 
@@ -253,7 +246,7 @@ export class HomePage {
 
         this.zeigeToast("Vorgang abgebrochen");
       }
-    };    
+    };
 
     const alert = await this.alertController.create({
       header: "Datumsarithmetik",
@@ -261,11 +254,12 @@ export class HomePage {
       buttons: [pruefButton, abbrechenButton],
       inputs: [ { name: "datum_1", type: "date", label: "Datum 1:" },
                 { name: "datum_2", type: "date", label: "Datum 2:" }
-              ]              
+              ]
     });
 
     await alert.present();
   }
+
 
   /**
    * Nachricht in einem sog. Toast anzeigen, siehe auch https://ionicframework.com/docs/api/toast
@@ -279,6 +273,23 @@ export class HomePage {
                                               duration: 2000
                                             });
     await toast.present();
+  }
+
+
+  /**
+   * Nachricht in Dialog anzeigen.
+   *
+   * @param nachricht  Im Dialog anzuzeigende Nachricht.
+   */
+  async zeigeDialog(nachricht:string) {
+
+    const alert =
+          await this.alertController.create({ header  : "Ergebnis",
+                                              message : nachricht,
+                                              buttons : [ "Ok" ]
+          });
+
+    await alert.present();
   }
 
 }
