@@ -12,13 +12,10 @@ import * as moment from 'moment';
  *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/components/alert/alert-interface.ts#L25
  * * Texttypen: date, email, number, password, search, tel, text, url, time, week, month, datetime-local
  *   Quelle: https://github.com/ionic-team/ionic-framework/blob/master/core/src/interface.d.ts#L50
+ * <br><br>
  *
  * Achtung: Ein Alert kann nicht verschiedene Arten von Input-Feldern enthalten, z.B. RadioButtons und
  * CheckBoxen gleichzeitig sind nicht möglich.
- * <br><br>
- *
- * Definition von  Interface AlertInput (wird benötigt, um Eingabe-Elemente auf Dialog zu definieren):
- *
  * <br><br>
  *
  * Eigenschaft "label" von AlertInput ist anscheinend nur für CheckBox und RadioButton notwendig, siehe
