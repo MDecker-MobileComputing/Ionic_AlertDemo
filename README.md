@@ -10,7 +10,7 @@ dialogs (instances of [ion-alert](https://ionicframework.com/docs/api/alert)).
 
 Prerequisite: NPM package `ionic` must be installed globally.
 
-1. Clone the repository
+1. Clone the repository.
 
 2. Open shell in root folder of cloned repository and execute `npm install`.
 

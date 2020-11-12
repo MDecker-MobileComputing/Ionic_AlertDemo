@@ -131,7 +131,7 @@ export class HomePage {
       buttons: [pruefButton, abbrechenButton],
       inputs: [ { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
                 { name: "stadt_2", type: "radio", label: "Hamburg"  , value: "hamburg"   },
-                { name: "stadt_3", type: "radio", label: "London"   , value: "london"    },
+                { name: "stadt_3", type: "radio", label: "London"   , value: "london"    }
               ]
     });
 
@@ -197,6 +197,97 @@ export class HomePage {
     await alert.present();
   }
 
+  /**
+   * Zwei Dialoge mit RadioButton-Elementen hintereinander.
+   */
+  async zweiFragenHintereinander() {
+
+    let antwort1richtig = false;
+    let antwort2richtig = false;
+
+    let abgebrochen = false;
+
+    const pruefButton1 = {
+      text: "Weiter",
+      handler: (inputWert) => {
+
+        if (inputWert === undefined || inputWert === null) {
+
+          this.zeigeToast("Keine Antwort ausgewählt.");
+          return false;
+        }
+
+        if (inputWert == "canberra") {
+
+          antwort1richtig = true;
+        }
+      }
+    };
+
+    const pruefButton2 = {
+      text: "Weiter",
+      handler: (inputWert) => {
+
+        if (inputWert === undefined || inputWert === null) {
+
+          this.zeigeToast("Keine Antwort ausgewählt.");
+          return false;
+        }
+
+        if (inputWert == "ottawa") {
+
+          antwort2richtig = true;
+        }
+      }
+    };
+
+    const abbrechenButton = {
+      text: "Abbrechen",
+      role: "Cancel",
+      handler: () => {
+
+        abgebrochen = true;
+        this.zeigeToast("Vorgang abgebrochen");
+      }
+    };
+
+    const alert1 = await this.alertController.create({
+      header: "Single-Choice-Frage 1",
+      message: "Welches ist die Hauptstadt von Australien?",
+      buttons: [pruefButton1, abbrechenButton],
+      inputs: [ { name: "australien_1", type: "radio", label: "Canberra" , value: "canberra"  },
+                { name: "australien_2", type: "radio", label: "Melbourne", value: "melbourne" },
+                { name: "australien_3", type: "radio", label: "Sydney"   , value: "sydney"    }
+              ]
+    });
+
+    await alert1.present();
+    await alert1.onDidDismiss();
+
+    if (abgebrochen) { return; }
+
+    const alert2 = await this.alertController.create({
+      header: "Single-Choice-Frage 2",
+      message: "Welches ist die Hauptstadt von Kanada?",
+      buttons: [pruefButton2, abbrechenButton],
+      inputs: [ { name: "kanada_1", type: "radio", label: "Montreal" , value: "montreal"  },
+                { name: "kanada_1", type: "radio", label: "Ottawa"   , value: "ottawa"    },
+                { name: "kanada_1", type: "radio", label: "Vancouver", value: "vancouver" }
+              ]
+    });
+
+    await alert2.present();
+    await alert2.onDidDismiss();
+
+    if (abgebrochen) { return; }
+
+    let anzahlRichtig = 0;
+    if (antwort1richtig) { anzahlRichtig++; }
+    if (antwort2richtig) { anzahlRichtig++; }
+
+    this.zeigeDialog(`${anzahlRichtig} von 2 Fragen richtig beantwortet.`);
+  }
+
 
   /**
    * Methode erzeugt Dialog zur Eingabe zweiter Datumswerte, für die die Differenz in Tagen berechnet wird.
@@ -257,9 +348,10 @@ export class HomePage {
     await alert.present();
   }
 
+
   /**
    * Öffnet Dialog zur Eingabe einer Länge in Zoll/Inch, die dann in cm umgerechnet wird.
-   * In Chrome-basierten Browsern könnnen in das Eingabefeld nur Zahlenwerte und keine Buchstaben 
+   * In Chrome-basierten Browsern könnnen in das Eingabefeld nur Zahlenwerte und keine Buchstaben
    * eingegeben werden.
    */
   async onZollNachCentimeter() {
@@ -282,7 +374,7 @@ export class HomePage {
 
         let ergebnis = `${zollNumber} Zoll entsprechen ${cm} cm.`;
         this.zeigeDialog(ergebnis);
-      }      
+      }
     };
 
     const abbrechenButton = {
@@ -298,8 +390,8 @@ export class HomePage {
       header: "Zoll in cm umrechnen",
       message: "Geben Sie die Länge in Zoll (Inch) ein.",
       buttons: [umrechnenButton, abbrechenButton],
-      inputs: [ { name: "input_zoll" , type: "number", placeholder: "Zoll/Inch" } ]              
-    });    
+      inputs: [ { name: "input_zoll" , type: "number", placeholder: "Zoll/Inch" } ]
+    });
 
     await alert.present();
   }
@@ -325,7 +417,7 @@ export class HomePage {
    *
    * @param nachricht  Im Dialog anzuzeigende Nachricht.
    */
-  async zeigeDialog(nachricht:string) {
+  async zeigeDialog(nachricht: string) {
 
     const alert =
           await this.alertController.create({ header  : "Ergebnis",
