@@ -80,6 +80,7 @@ export class HomePage {
       header: "Hallo Name",
       message: "Bitte geben Sie Ihren Vornamen und auch den Nachnamen ein:",
       buttons: [okButton, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "input_vorname" , type: "text", placeholder: "Vorname"  },
                 { name: "input_nachname", type: "text", placeholder: "Nachname" }
               ]
@@ -129,6 +130,7 @@ export class HomePage {
       header: "Single-Choice-Frage",
       message: "Welche Stadt liegt am weisten nördlich?",
       buttons: [pruefButton, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
                 { name: "stadt_2", type: "radio", label: "Hamburg"  , value: "hamburg"   },
                 { name: "stadt_3", type: "radio", label: "London"   , value: "london"    }
@@ -186,6 +188,7 @@ export class HomePage {
       header: "Multiple-Choice-Frage",
       message: "Wählen Sie alle Holzblasinstrumente aus:",
       buttons: [pruefButton, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "cbox_1", type: "checkbox", label: "Cajón"   , value: "cajon"   , checked: false },
                 { name: "cbox_2", type: "checkbox", label: "Keytar"  , value: "keytar"  , checked: false },
                 { name: "cbox_3", type: "checkbox", label: "Saxophon", value: "saxophon", checked: false },
@@ -255,6 +258,7 @@ export class HomePage {
       header: "Single-Choice-Frage 1",
       message: "Welches ist die Hauptstadt von Australien?",
       buttons: [pruefButton1, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "australien_1", type: "radio", label: "Canberra" , value: "canberra"  },
                 { name: "australien_2", type: "radio", label: "Melbourne", value: "melbourne" },
                 { name: "australien_3", type: "radio", label: "Sydney"   , value: "sydney"    }
@@ -340,6 +344,7 @@ export class HomePage {
       header: "Datumsarithmetik",
       message: "Geben Sie die beiden Datumswerte ein, zwischen denen die Differenz in Tagen berechnet werden soll.",
       buttons: [pruefButton, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "datum_1", type: "date", label: "Datum 1:" },
                 { name: "datum_2", type: "date", label: "Datum 2:" }
               ]
@@ -390,6 +395,7 @@ export class HomePage {
       header: "Zoll in cm umrechnen",
       message: "Geben Sie die Länge in Zoll (Inch) ein.",
       buttons: [umrechnenButton, abbrechenButton],
+      backdropDismiss: false,
       inputs: [ { name: "input_zoll" , type: "number", placeholder: "Zoll/Inch" } ]
     });
 
@@ -405,9 +411,10 @@ export class HomePage {
   async zeigeToast(nachricht: string) {
 
     const toast =
-          await this.toastController.create({ message: nachricht,
-                                              duration: 2000
-                                            });
+          await this.toastController.create({ 
+            message: nachricht,
+            duration: 2000
+          });
     await toast.present();
   }
 
@@ -420,9 +427,11 @@ export class HomePage {
   async zeigeDialog(nachricht: string) {
 
     const alert =
-          await this.alertController.create({ header  : "Ergebnis",
-                                              message : nachricht,
-                                              buttons : [ "Ok" ]
+          await this.alertController.create({ 
+            header  : "Ergebnis",
+            message : nachricht,
+            buttons : [ "Ok" ],
+            backdropDismiss: false,
           });
 
     await alert.present();
