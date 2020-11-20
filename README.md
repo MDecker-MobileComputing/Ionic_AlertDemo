@@ -19,13 +19,18 @@ dialogs (instances of [ion-alert](https://ionicframework.com/docs/api/alert)).
 ----
 ## Run the app locally ##
 
-Prerequisite: NPM package `ionic` must be installed globally.
+Prerequisite: NPM package [`@ionic/cli`](https://www.npmjs.com/package/@ionic/cli) must be installed globally.
+
+<br>
+
+**Steps:**
 
 1. Clone the repository.
 
 2. Open shell in root folder of cloned repository and execute `npm install`.
 
 3. To run app locall in browser execute `ionic serve`.
+
 
 <br>
 
