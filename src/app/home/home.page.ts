@@ -106,7 +106,7 @@ export class HomePage {
           return false;
         }
 
-        if (inputWert == "hamburg") {
+        if (inputWert === "hamburg") {
 
           this.zeigeDialog("Richtige Antwort!");
 
@@ -411,7 +411,7 @@ export class HomePage {
   async zeigeToast(nachricht: string) {
 
     const toast =
-          await this.toastController.create({ 
+          await this.toastController.create({
             message: nachricht,
             duration: 2000
           });
@@ -427,7 +427,7 @@ export class HomePage {
   async zeigeDialog(nachricht: string) {
 
     const alert =
-          await this.alertController.create({ 
+          await this.alertController.create({
             header  : "Ergebnis",
             message : nachricht,
             buttons : [ "Ok" ],
