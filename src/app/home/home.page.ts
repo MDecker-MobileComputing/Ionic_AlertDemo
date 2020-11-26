@@ -299,11 +299,11 @@ export class HomePage {
    *
    * Eigentliche Datumsarithmetik wird mit moment.js gemacht. Die JavaScript-Library verfügt auch über eine
    * TypeScript-Definitions-Datei und kann deshalb in TypeScript-Projekten verwendet werden.
-   * Befehl, um sie dem projekt hinzuzufügen: npm install moment.
+   * Befehl, um sie dem projekt hinzuzufügen: `npm install moment`.
    */
   async onDatumsBerechnung() {
 
-    const pruefButton = {
+    const berechnenButton = {
       text: "Berechnen",
       handler: (inputWerte) => {
 
@@ -343,7 +343,7 @@ export class HomePage {
     const alert = await this.alertController.create({
       header: "Datumsarithmetik",
       message: "Geben Sie die beiden Datumswerte ein, zwischen denen die Differenz in Tagen berechnet werden soll.",
-      buttons: [pruefButton, abbrechenButton],
+      buttons: [berechnenButton, abbrechenButton],
       backdropDismiss: false,
       inputs: [ { name: "datum_1", type: "date", label: "Datum 1:" },
                 { name: "datum_2", type: "date", label: "Datum 2:" }
