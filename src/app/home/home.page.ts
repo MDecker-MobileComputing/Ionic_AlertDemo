@@ -162,6 +162,7 @@ export class HomePage {
         if (anzahlAntworten !== 2) {
 
           this.zeigeToast("Antwort ist FALSCH!");
+          return false;
         }
 
         if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
