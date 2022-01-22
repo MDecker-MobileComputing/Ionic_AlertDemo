@@ -37,7 +37,6 @@ export class HomePage {
                private toastController: ToastController
              ) {}
 
-
   /**
    * Öffnet Alert (Dialog) mit zwei Texteingabefeldern, die beide ausgefüllt werden müssen.
    */
