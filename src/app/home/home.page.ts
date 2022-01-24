@@ -220,7 +220,7 @@ export class HomePage {
           return false;
         }
 
-        if (inputWert == "canberra") {
+        if (inputWert === "canberra") {
 
           antwort1richtig = true;
         }
@@ -237,7 +237,7 @@ export class HomePage {
           return false;
         }
 
-        if (inputWert == "ottawa") {
+        if (inputWert === "ottawa") {
 
           antwort2richtig = true;
         }
