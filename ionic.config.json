@@ -1,7 +1,6 @@
 {
   "name": "DialogDemo",
   "integrations": {
-    "cordova": {},
     "capacitor": {}
   },
   "type": "angular"
