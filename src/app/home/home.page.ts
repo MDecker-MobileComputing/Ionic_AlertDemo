@@ -321,10 +321,9 @@ export class HomePage {
           return false;
         }
 
-
+        // eigentliche Datumsberechnung
         let moment1 = moment(datum1);
         let moment2 = moment(datum2);
-
         let diffTage = moment2.diff( moment1, "days" );
 
         this.zeigeDialog(`Differenz: ${diffTage} Tag(e)`);
