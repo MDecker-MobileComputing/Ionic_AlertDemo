@@ -63,6 +63,7 @@ export class HomePage {
         const gruss = `Hallo ${vorname} ${nachname}!`;
 
         this.zeigeDialog(gruss);
+        return true;
       }
     };
 
@@ -108,10 +109,12 @@ export class HomePage {
         if (inputWert === "hamburg") {
 
           this.zeigeDialog("Richtige Antwort!");
+          return true;
 
         } else {
 
           this.zeigeDialog("Falsche Antwort!");
+          return false;
         }
       }
     };
@@ -167,10 +170,12 @@ export class HomePage {
         if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
 
           this.zeigeDialog("Antwort ist RICHTIG!");
+          return true;
 
         } else {
 
           this.zeigeDialog("Antwort ist FALSCH!");
+          return false;
         }
       }
     };
@@ -224,6 +229,8 @@ export class HomePage {
 
           antwort1richtig = true;
         }
+
+        return true
       }
     };
 
@@ -241,6 +248,8 @@ export class HomePage {
 
           antwort2richtig = true;
         }
+
+        return true;
       }
     };
 
@@ -327,6 +336,8 @@ export class HomePage {
         let diffTage = moment2.diff( moment1, "days" );
 
         this.zeigeDialog(`Differenz: ${diffTage} Tag(e)`);
+
+        return true;
       }
     };
 
@@ -378,6 +389,8 @@ export class HomePage {
 
         let ergebnis = `${zollNumber} Zoll entsprechen ${cm} cm.`;
         this.zeigeDialog(ergebnis);
+
+        return false;
       }
     };
 
