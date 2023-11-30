@@ -44,7 +44,7 @@ export class HomePage {
 
     const okButton = {
       text: "Weiter",
-      handler: (inputWerte) => {
+      handler: (inputWerte: any) => {
 
         const vorname  = inputWerte.input_vorname;
         const nachname = inputWerte.input_nachname;
@@ -98,7 +98,7 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: (inputWert) => {
+      handler: (inputWert: string) => {
 
         if (inputWert === undefined || inputWert === null) {
 
@@ -151,7 +151,7 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: (inputWertArray) => {
+      handler: (inputWertArray: string[]) => {
 
         let anzahlAntworten = inputWertArray.length;
 
@@ -217,7 +217,7 @@ export class HomePage {
 
     const pruefButton1 = {
       text: "Weiter",
-      handler: (inputWert) => {
+      handler: (inputWert: string) => {
 
         if (inputWert === undefined || inputWert === null) {
 
@@ -236,7 +236,7 @@ export class HomePage {
 
     const pruefButton2 = {
       text: "Weiter",
-      handler: (inputWert) => {
+      handler: (inputWert: string) => {
 
         if (inputWert === undefined || inputWert === null) {
 
@@ -314,7 +314,7 @@ export class HomePage {
 
     const berechnenButton = {
       text: "Berechnen",
-      handler: (inputWerte) => {
+      handler: (inputWerte: any) => {
 
         let datum1 = inputWerte.datum_1;
         let datum2 = inputWerte.datum_2;
@@ -373,7 +373,7 @@ export class HomePage {
 
     const umrechnenButton = {
       text: "Umrechnen",
-      handler: (inputWerte) => {
+      handler: (inputWerte: any) => {
 
         let zollStr = inputWerte.input_zoll; // ist leerer String wenn in Firefox Buchstaben eingegeben werden
 
