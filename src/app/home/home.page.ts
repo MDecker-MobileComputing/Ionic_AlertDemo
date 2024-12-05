@@ -130,7 +130,7 @@ export class HomePage {
 
     const alert = await this.alertController.create({
       header: "Single-Choice-Frage",
-      message: "Welche Stadt liegt am weisten nördlich?",
+      message: "Welche Stadt liegt am weitesten nördlich?",
       buttons: [pruefButton, abbrechenButton],
       backdropDismiss: false,
       inputs: [ { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
