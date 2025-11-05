@@ -2,8 +2,9 @@
 
 <br>
 
-Simple [Ionic](https://ionicframework.com) app to demonstrate possibilities with
-dialogs (instances of [ion-alert](https://ionicframework.com/docs/api/alert)).
+Diese Repository enthält ein [Ionic](https://ionicframework.com/)/Angular-Projekt für eine mobile App.
+Die App dient der Demonstration verschiedener Möglichkeiten mit Dialogen, welche im Ionic-Framework
+[Alert](https://ionicframework.com/docs/api/alert) genannt werden.
 
 <br>
 
@@ -23,30 +24,11 @@ dialogs (instances of [ion-alert](https://ionicframework.com/docs/api/alert)).
 
 ----
 
-## Run the app locally ##
-
-<br>
-
-Prerequisite: NPM package [`@ionic/cli`](https://www.npmjs.com/package/@ionic/cli) must be installed globally.
-
-<br>
-
-**Steps:**
-
-1. Clone the repository.
-
-2. Open shell in root folder of cloned repository and execute `npm install`.
-
-3. To run app locall in browser execute `ionic serve`.
-
-<br>
-
-----
-
 ## License ##
 
 <br>
 
-See the [LICENSE file](LICENSE.md) for license rights and limitations (BSD 3-Clause License) for the files in this repository.
+See the [LICENSE file](LICENSE.md) for license rights and limitations (BSD 3-Clause License) for the
+files in this repository.
 
 <br>
