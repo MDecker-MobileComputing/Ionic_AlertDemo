@@ -67,6 +67,13 @@
             },
             "ci": {
               "progress": false
+            },
+            "github-pages": {
+              "baseHref": "https://github.com/MDecker-MobileComputing/Ionic_AlertDemo",
+              "outputPath": {
+                "base": "docs",
+                "browser": ""
+              }
             }
           },
           "defaultConfiguration": "production"
@@ -120,7 +127,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "fb9fbdab-dfc0-49b1-aa00-db764e48244d"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

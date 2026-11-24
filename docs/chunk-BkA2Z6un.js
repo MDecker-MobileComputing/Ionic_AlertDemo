@@ -1,0 +1,1 @@
+import{on as f}from"./main.js";var n=()=>{if(f!==void 0)return f.Capacitor};export{n as t};
