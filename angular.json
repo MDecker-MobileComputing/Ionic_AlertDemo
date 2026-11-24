@@ -69,7 +69,7 @@
               "progress": false
             },
             "github-pages": {
-              "baseHref": "https://github.com/MDecker-MobileComputing/Ionic_AlertDemo",
+              "baseHref": "https://mdecker-mobilecomputing.github.io/Ionic_AlertDemo/",
               "outputPath": {
                 "base": "docs",
                 "browser": ""
