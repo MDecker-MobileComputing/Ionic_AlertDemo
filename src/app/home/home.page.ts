@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import * as moment from 'moment';
+import moment from 'moment';
 
 
 /**
@@ -45,25 +45,25 @@ export class HomePage {
 
     const okButton = {
       text: "Weiter",
-      handler: (inputWerte: any) => {
+      handler: ( inputWerte: any ) => {
 
         const vorname  = inputWerte.input_vorname;
         const nachname = inputWerte.input_nachname;
 
-        if (vorname === null || vorname.trim().length === 0) {
+        if ( vorname === null || vorname.trim().length === 0 ) {
 
-          this.zeigeToast("Ungültige Eingabe: Kein Vorname eingegeben.");
+          this.zeigeToast( "Ungültige Eingabe: Kein Vorname eingegeben." );
           return false; // "false", damit Dialog nicht geschlossen wird
         }
-        if (nachname === null || nachname.trim().length === 0) {
+        if ( nachname === null || nachname.trim().length === 0 ) {
 
-          this.zeigeToast("Ungültige Eingabe: Kein Nachname eingegeben.");
+          this.zeigeToast( "Ungültige Eingabe: Kein Nachname eingegeben." );
           return false;
         }
 
         const gruss = `Hallo ${vorname} ${nachname}!`;
 
-        this.zeigeDialog(gruss);
+        this.zeigeDialog( gruss );
         return true;
       }
     };
@@ -80,7 +80,7 @@ export class HomePage {
     const alert = await this.alertController.create({
       header: "Hallo Name",
       message: "Bitte geben Sie Ihren Vornamen und auch den Nachnamen ein:",
-      buttons: [okButton, abbrechenButton],
+      buttons: [ okButton, abbrechenButton ],
       backdropDismiss: false,
       inputs: [ { name: "input_vorname" , type: "text", placeholder: "Vorname"  },
                 { name: "input_nachname", type: "text", placeholder: "Nachname" }
@@ -99,22 +99,22 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: (inputWert: string) => {
+      handler: ( inputWert: string ) => {
 
-        if (inputWert === undefined || inputWert === null) {
+        if ( inputWert === undefined || inputWert === null ) {
 
-          this.zeigeToast("Keine Antwort ausgewählt.");
+          this.zeigeToast( "Keine Antwort ausgewählt." );
           return false;
         }
 
-        if (inputWert === "hamburg") {
+        if ( inputWert === "hamburg" ) {
 
-          this.zeigeDialog("Richtige Antwort!");
+          this.zeigeDialog( "Richtige Antwort!" );
           return true;
 
         } else {
 
-          this.zeigeDialog("Falsche Antwort!");
+          this.zeigeDialog( "Falsche Antwort!" );
           return false;
         }
       }
@@ -125,16 +125,17 @@ export class HomePage {
       role: "Cancel",
       handler: () => {
 
-        this.zeigeToast("Vorgang abgebrochen");
+        this.zeigeToast( "Vorgang abgebrochen" );
       }
     };
 
     const alert = await this.alertController.create({
       header: "Single-Choice-Frage",
       message: "Welche Stadt liegt am weitesten nördlich?",
-      buttons: [pruefButton, abbrechenButton],
+      buttons: [ pruefButton, abbrechenButton ],
       backdropDismiss: false,
-      inputs: [ { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
+      inputs: [
+                { name: "stadt_1", type: "radio", label: "Amsterdam", value: "amsterdam" },
                 { name: "stadt_2", type: "radio", label: "Hamburg"  , value: "hamburg"   },
                 { name: "stadt_3", type: "radio", label: "London"   , value: "london"    }
               ]
@@ -152,30 +153,30 @@ export class HomePage {
 
     const pruefButton = {
       text: "Weiter",
-      handler: (inputWertArray: string[]) => {
+      handler: ( inputWertArray: string[] ) => {
 
         let anzahlAntworten = inputWertArray.length;
 
-        if (anzahlAntworten === 0) {
+        if ( anzahlAntworten === 0 ) {
 
-          this.zeigeToast("Keine einzige Antwort ausgewählt.");
+          this.zeigeToast( "Keine einzige Antwort ausgewählt." );
           return false;
         }
 
-        if (anzahlAntworten !== 2) {
+        if ( anzahlAntworten !== 2 ) {
 
-          this.zeigeToast("Antwort ist FALSCH!");
+          this.zeigeToast( "Antwort ist FALSCH!" );
           return false;
         }
 
-        if (inputWertArray.includes("saxophon") &&  inputWertArray.includes("schalmei") ) {
+        if (inputWertArray.includes( "saxophon" ) &&  inputWertArray.includes( "schalmei" ) ) {
 
-          this.zeigeDialog("Antwort ist RICHTIG!");
+          this.zeigeDialog( "Antwort ist RICHTIG!" );
           return true;
 
         } else {
 
-          this.zeigeDialog("Antwort ist FALSCH!");
+          this.zeigeDialog( "Antwort ist FALSCH!" );
           return false;
         }
       }
@@ -186,14 +187,14 @@ export class HomePage {
       role: "Cancel",
       handler: () => {
 
-        this.zeigeToast("Vorgang abgebrochen");
+        this.zeigeToast( "Vorgang abgebrochen" );
       }
     };
 
     const alert = await this.alertController.create({
       header: "Multiple-Choice-Frage",
       message: "Wählen Sie alle Holzblasinstrumente aus:",
-      buttons: [pruefButton, abbrechenButton],
+      buttons: [ pruefButton, abbrechenButton ],
       backdropDismiss: false,
       inputs: [ { name: "cbox_1", type: "checkbox", label: "Cajón"   , value: "cajon"   , checked: false },
                 { name: "cbox_2", type: "checkbox", label: "Keytar"  , value: "keytar"  , checked: false },
@@ -218,15 +219,15 @@ export class HomePage {
 
     const pruefButton1 = {
       text: "Weiter",
-      handler: (inputWert: string) => {
+      handler: ( inputWert: string ) => {
 
-        if (inputWert === undefined || inputWert === null) {
+        if ( inputWert === undefined || inputWert === null ) {
 
-          this.zeigeToast("Keine Antwort ausgewählt.");
+          this.zeigeToast( "Keine Antwort ausgewählt." );
           return false;
         }
 
-        if (inputWert === "canberra") {
+        if ( inputWert === "canberra" ) {
 
           antwort1richtig = true;
         }
@@ -241,11 +242,11 @@ export class HomePage {
 
         if (inputWert === undefined || inputWert === null) {
 
-          this.zeigeToast("Keine Antwort ausgewählt.");
+          this.zeigeToast( "Keine Antwort ausgewählt." );
           return false;
         }
 
-        if (inputWert === "ottawa") {
+        if ( inputWert === "ottawa" ) {
 
           antwort2richtig = true;
         }
@@ -260,14 +261,14 @@ export class HomePage {
       handler: () => {
 
         abgebrochen = true;
-        this.zeigeToast("Vorgang abgebrochen");
+        this.zeigeToast( "Vorgang abgebrochen" );
       }
     };
 
     const alert1 = await this.alertController.create({
       header: "Single-Choice-Frage 1",
       message: "Welches ist die Hauptstadt von Australien?",
-      buttons: [pruefButton1, abbrechenButton],
+      buttons: [ pruefButton1, abbrechenButton ],
       backdropDismiss: false,
       inputs: [ { name: "australien_1", type: "radio", label: "Canberra" , value: "canberra"  },
                 { name: "australien_2", type: "radio", label: "Melbourne", value: "melbourne" },
@@ -283,7 +284,7 @@ export class HomePage {
     const alert2 = await this.alertController.create({
       header: "Single-Choice-Frage 2",
       message: "Welches ist die Hauptstadt von Kanada?",
-      buttons: [pruefButton2, abbrechenButton],
+      buttons: [ pruefButton2, abbrechenButton ],
       inputs: [ { name: "kanada_1", type: "radio", label: "Montreal" , value: "montreal"  },
                 { name: "kanada_1", type: "radio", label: "Ottawa"   , value: "ottawa"    },
                 { name: "kanada_1", type: "radio", label: "Vancouver", value: "vancouver" }
@@ -293,13 +294,13 @@ export class HomePage {
     await alert2.present();
     await alert2.onDidDismiss();
 
-    if (abgebrochen) { return; }
+    if ( abgebrochen ) { return; }
 
     let anzahlRichtig = 0;
-    if (antwort1richtig) { anzahlRichtig++; }
-    if (antwort2richtig) { anzahlRichtig++; }
+    if ( antwort1richtig ) { anzahlRichtig++; }
+    if ( antwort2richtig ) { anzahlRichtig++; }
 
-    this.zeigeDialog(`${anzahlRichtig} von 2 Fragen richtig beantwortet.`);
+    this.zeigeDialog( `${anzahlRichtig} von 2 Fragen richtig beantwortet.` );
   }
 
 
@@ -315,28 +316,28 @@ export class HomePage {
 
     const berechnenButton = {
       text: "Berechnen",
-      handler: (inputWerte: any) => {
+      handler: ( inputWerte: any ) => {
 
         let datum1 = inputWerte.datum_1;
         let datum2 = inputWerte.datum_2;
 
-        if (datum1 === null || datum1.trim().length === 0) {
+        if ( datum1 === null || datum1.trim().length === 0 ) {
 
-          this.zeigeToast("Keinen Wert für erstes Datum eingegeben.");
+          this.zeigeToast( "Keinen Wert für erstes Datum eingegeben." );
           return false;
         }
-        if (datum2 === null || datum2.trim().length === 0) {
+        if (datum2 === null || datum2.trim().length === 0 ) {
 
-          this.zeigeToast("Keinen Wert für zweites Datum eingegeben.");
+          this.zeigeToast( "Keinen Wert für zweites Datum eingegeben." );
           return false;
         }
 
         // eigentliche Datumsberechnung
-        let moment1 = moment(datum1);
-        let moment2 = moment(datum2);
+        let moment1 = moment( datum1 );
+        let moment2 = moment( datum2 );
         let diffTage = moment2.diff( moment1, "days" );
 
-        this.zeigeDialog(`Differenz: ${diffTage} Tag(e)`);
+        this.zeigeDialog( `Differenz: ${diffTage} Tag(e)` );
 
         return true;
       }
@@ -347,14 +348,14 @@ export class HomePage {
       role: "Cancel",
       handler: () => {
 
-        this.zeigeToast("Vorgang abgebrochen");
+        this.zeigeToast( "Vorgang abgebrochen" );
       }
     };
 
     const alert = await this.alertController.create({
       header: "Datumsarithmetik",
       message: "Geben Sie die beiden Datumswerte ein, zwischen denen die Differenz in Tagen berechnet werden soll.",
-      buttons: [berechnenButton, abbrechenButton],
+      buttons: [ berechnenButton, abbrechenButton ],
       backdropDismiss: false,
       inputs: [ { name: "datum_1", type: "date", label: "Datum 1:" },
                 { name: "datum_2", type: "date", label: "Datum 2:" }
@@ -374,17 +375,17 @@ export class HomePage {
 
     const umrechnenButton = {
       text: "Umrechnen",
-      handler: (inputWerte: any) => {
+      handler: ( inputWerte: any ) => {
 
         let zollStr = inputWerte.input_zoll; // ist leerer String wenn in Firefox Buchstaben eingegeben werden
 
-        if (zollStr === null || zollStr === undefined || zollStr.trim().length === 0) {
+        if ( zollStr === null || zollStr === undefined || zollStr.trim().length === 0 ) {
 
-          this.zeigeToast("Kein Zoll-Wert eingegeben.");
+          this.zeigeToast( "Kein Zoll-Wert eingegeben." );
           return false;
         }
 
-        let zollNumber = parseFloat(zollStr);
+        let zollNumber = parseFloat( zollStr );
 
         let cm = zollNumber * 2.54;
 
@@ -400,14 +401,14 @@ export class HomePage {
       role: "Cancel",
       handler: () => {
 
-        this.zeigeToast("Vorgang abgebrochen");
+        this.zeigeToast( "Vorgang abgebrochen" );
       }
     };
 
     const alert = await this.alertController.create({
       header: "Zoll in cm umrechnen",
       message: "Geben Sie die Länge in Zoll (Inch) ein.",
-      buttons: [umrechnenButton, abbrechenButton],
+      buttons: [ umrechnenButton, abbrechenButton ],
       backdropDismiss: false,
       inputs: [ { name: "input_zoll" , type: "number", placeholder: "Zoll/Inch" } ]
     });
@@ -421,7 +422,7 @@ export class HomePage {
    *
    * @param nachricht  Im Toast anzuzeigende Nachricht.
    */
-  async zeigeToast(nachricht: string) {
+  async zeigeToast( nachricht: string ) {
 
     const toast =
           await this.toastController.create({
@@ -437,7 +438,7 @@ export class HomePage {
    *
    * @param nachricht  Im Dialog anzuzeigende Nachricht.
    */
-  async zeigeDialog(nachricht: string) {
+  async zeigeDialog( nachricht: string ) {
 
     const alert =
           await this.alertController.create({
@@ -449,5 +450,4 @@ export class HomePage {
 
     await alert.present();
   }
-
 }
